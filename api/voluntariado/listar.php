@@ -10,6 +10,6 @@ $resposta = $voluntariado->listar();
 
 if($resposta != null ) 
 
-    echo Resposta::respostaComDados("sucesso","Lista de voluntariado", $resposta);
+    echo Resposta::respostaComDados("sucesso","Lista de monitoria", $resposta);
 else
-    echo Resposta::respostaSemDados("erro","Lista de voluntariado vazia");
+    echo Resposta::respostaSemDados("erro","Lista de monitoria vazia");
