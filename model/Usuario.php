@@ -43,11 +43,24 @@ class Usuario extends Conexao
     }
 
     public function inserir(){
+		$sql = "INSERT INTO $this->table SET nome = ?, matricula = ?, senha= ?, id_usuario = ?";
+        $stmt = Conexao::prepare($sql);
+        $stmt->execute(array($this->nome, $this->matricula, $this->senha, $this->idUsuario));
+        if($stmt->rowCount() > 0)
+            return true;
+        else
+            return false;
 
     }
 
     public function alterar(){
-
+        $sql = "UPDATE $this->table SET  senha = ? WHERE id = ? AND id_usuario = ?";
+        $stmt = Conexao::prepare($sql);
+        $stmt->execute(array( $this->senha, $this->idUsuario));
+        if($stmt->rowCount() > 0)
+            return true;
+        else
+            return false;
     }
 
     public function logar(){
