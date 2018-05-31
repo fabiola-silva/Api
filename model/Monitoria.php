@@ -8,7 +8,6 @@ class Monitoria extends Conexao
     private $id;
     private $descricao;
     private $feedback;
-    private $dataCadastro;
     private $idUsuario;
 
     /**
@@ -26,16 +25,6 @@ class Monitoria extends Conexao
     {
         $this->descricao = $descricao;
     }
-
-    /**
-     * @param mixed $dataCadastro
-     */
-    public function setDataCadastro($dataCadastro)
-    {
-        $this->dataCadastro = $dataCadastro;
-    }
-
-
 
     /**
      * @param mixed $feedback
@@ -85,7 +74,7 @@ class Monitoria extends Conexao
     }
 
     public function buscar(){
-        $sql = "SELECT id, descricao, feedback, data_cadastro FROM $this->table WHERE id = ? AND id_usuario = ?";
+        $sql = "SELECT id, descricao, feedback FROM $this->table WHERE id = ? AND id_usuario = ?";
         $stmt = Conexao::prepare($sql);
         $stmt->execute(array($this->id,$this->idUsuario));
         if($stmt->rowCount() > 0)
@@ -95,7 +84,7 @@ class Monitoria extends Conexao
     }
 
     public function listar(){
-        $sql = "SELECT id, descricao, feedback, data_cadastro FROM $this->table WHERE id_usuario = ?";
+        $sql = "SELECT id, descricao, feedback FROM $this->table WHERE id_usuario = ?";
         $stmt = Conexao::prepare($sql);
         $stmt->execute(array($this->idUsuario));
         if($stmt->rowCount() > 0)
