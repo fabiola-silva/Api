@@ -54,9 +54,9 @@ class Usuario extends Conexao
     }
 
     public function alterar(){
-        $sql = "UPDATE $this->table SET  senha = ? WHERE id = ? AND id_usuario = ?";
+       $sql = "UPDATE $this->table SET nome = ?, matricula = ?, , senha = ? WHERE id = ? AND id_usuario = ?";
         $stmt = Conexao::prepare($sql);
-        $stmt->execute(array( $this->senha, $this->idUsuario));
+        $stmt->execute(array($this-nome, $this->matricula, $this->id,$this->idUsuario));
         if($stmt->rowCount() > 0)
             return true;
         else

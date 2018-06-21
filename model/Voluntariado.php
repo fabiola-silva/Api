@@ -2,9 +2,9 @@
 
 require_once 'config/Conexao.php';
 
-class Monitoria extends Conexao
+class Voluntariado extends Conexao
 {
-    private $table = 'monitoria';
+    private $table = 'voluntariado';
     private $id;
     private $data_cadastro;
     private $descricao;
