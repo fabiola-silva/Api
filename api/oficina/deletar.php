@@ -1,13 +1,13 @@
 <?php
-require_once '../../model/Voluntariado.php';
+require_once '../../model/Oficina.php';
 require_once '../../model/aplicacao/Resposta.php';
 
-$voluntariado = new Voluntariado();
+$oficina = new Oficina();
 
-$voluntariado->setId($_POST['id_voluntariado']);
-$voluntariado->setIdUsuario($_POST['id_usuario']);
+$oficina->setId($_POST['id_oficina']);
+$oficina->setIdUsuario($_POST['id_usuario']);
 
-$resposta = $voluntariado->deletar();
+$resposta = $monitoria->deletar();
 
 if($resposta) 
     echo Resposta::respostaSemDados("sucesso","Dados excluídos com sucesso");

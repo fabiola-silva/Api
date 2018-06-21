@@ -12,6 +12,6 @@ $resposta = $voluntariado->buscar();
 
 if($resposta != null ) 
 
-    echo Resposta::respostaComDados("sucesso","Dados de voluntariado", $resposta);
+    echo Resposta::respostaComDados("sucesso","Dados do voluntariado", $resposta);
 else
-    echo Resposta::respostaSemDados("erro","Dados de voluntariado não foram encontrados");
+    echo Resposta::respostaSemDados("erro","Dados do voluntariado não foram encontrados");

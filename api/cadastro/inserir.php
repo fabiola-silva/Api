@@ -3,6 +3,7 @@
 require_once '../../model/Usuario.php';
 require_once '../../model/aplicacao/Resposta.php';
 
+$usuario = new Usuario();
 
 $usuario->setNome($_POST['nome']);
 $usuario->setMatricula($_POST['matricula']);

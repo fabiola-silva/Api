@@ -4,7 +4,7 @@ require_once '../../model/aplicacao/Resposta.php';
 
 $voluntariado = new Voluntariado();
 
-$voluntariado->setId($_POST['id']);
+$voluntariado->setId($_POST['id_voluntariado']);
 $voluntariado->setIdUsuario($_POST['id_usuario']);
 $voluntariado->setDescricao($_POST['descricao']);
 $voluntariado->setFeedback($_POST['feedback']);

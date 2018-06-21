@@ -2,13 +2,12 @@
 
 require_once 'config/Conexao.php';
 
-class Monitoria extends Conexao
+class Oficina extends Conexao
 {
-    private $table = 'monitoria';
+    private $table = 'oficina';
     private $id;
     private $data_cadastro;
-    private $descricao;
-    private $feedback;
+    private $nome;
     private $idUsuario;
 
     /**
@@ -29,19 +28,11 @@ class Monitoria extends Conexao
 
 
     /**
-     * @param mixed $descricao
+     * @param mixed $nome
      */
-    public function setDescricao($descricao)
+    public function setNome($nome)
     {
-        $this->descricao = $descricao;
-    }
-
-    /**
-     * @param mixed $feedback
-     */
-    public function setFeedback($feedback)
-    {
-        $this->feedback = $feedback;
+        $this->nome = $nome;
     }
 
     /**
@@ -53,9 +44,9 @@ class Monitoria extends Conexao
     }
 
     public function inserir(){
-        $sql = "INSERT INTO $this->table SET descricao = ?, feedback = ?, id_usuario = ?";
+        $sql = "INSERT INTO $this->table SET nome = ?, id_usuario = ?";
         $stmt = Conexao::prepare($sql);
-        $stmt->execute(array($this->descricao, $this->feedback, $this->idUsuario));
+        $stmt->execute(array($this->nome, $this->idUsuario));
         if($stmt->rowCount() > 0)
             return true;
         else
@@ -74,9 +65,9 @@ class Monitoria extends Conexao
     }
 
     public function atualizar(){
-        $sql = "UPDATE $this->table SET descricao = ?, feedback = ? WHERE id = ? AND id_usuario = ?";
+        $sql = "UPDATE $this->table SET nome = ? WHERE id = ? AND id_usuario = ?";
         $stmt = Conexao::prepare($sql);
-        $stmt->execute(array($this->descricao, $this->feedback, $this->id,$this->idUsuario));
+        $stmt->execute(array($this->nome, $this->id,$this->idUsuario));
         if($stmt->rowCount() > 0)
             return true;
         else
@@ -84,7 +75,7 @@ class Monitoria extends Conexao
     }
 
     public function buscar(){
-        $sql = "SELECT id, data_cadastro, descricao, feedback FROM $this->table WHERE id = ? AND id_usuario = ?";
+        $sql = "SELECT id, data_cadastro, nome FROM $this->table WHERE id = ? AND id_usuario = ?";
         $stmt = Conexao::prepare($sql);
         $stmt->execute(array($this->id,$this->idUsuario));
         if($stmt->rowCount() > 0)
@@ -94,7 +85,7 @@ class Monitoria extends Conexao
     }
 
     public function listar(){
-        $sql = "SELECT id, data_cadastro, descricao, feedback FROM $this->table WHERE id_usuario = ?";
+        $sql = "SELECT id, data_cadastro, nome FROM $this->table WHERE id_usuario = ?";
         $stmt = Conexao::prepare($sql);
         $stmt->execute(array($this->idUsuario));
         if($stmt->rowCount() > 0)

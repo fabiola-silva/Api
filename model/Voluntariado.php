@@ -5,7 +5,8 @@ require_once 'config/Conexao.php';
 class Voluntariado extends Conexao
 {
     private $table = 'voluntariado';
-    private $id_voluntariado;
+    private $id;
+    private $data_cadastro;
     private $descricao;
     private $feedback;
     private $idUsuario;
@@ -17,6 +18,15 @@ class Voluntariado extends Conexao
     {
         $this->id = $id;
     }
+
+     /**
+     * @param mixed $data_cadastro
+     */
+    public function setdata_cadastro($data_cadastro)
+    {
+        $this->data_cadastro = $data_cadastro;
+    }
+
 
     /**
      * @param mixed $descricao
@@ -74,7 +84,7 @@ class Voluntariado extends Conexao
     }
 
     public function buscar(){
-        $sql = "SELECT id, descricao, feedback FROM $this->table WHERE id = ? AND id_usuario = ?";
+        $sql = "SELECT id, data_cadastro, descricao, feedback FROM $this->table WHERE id = ? AND id_usuario = ?";
         $stmt = Conexao::prepare($sql);
         $stmt->execute(array($this->id,$this->idUsuario));
         if($stmt->rowCount() > 0)
@@ -84,7 +94,7 @@ class Voluntariado extends Conexao
     }
 
     public function listar(){
-        $sql = "SELECT id_voluntariado, data_cadastro, descricao, feedback FROM $this->table WHERE id_usuario = ?";
+        $sql = "SELECT id, data_cadastro, descricao, feedback FROM $this->table WHERE id_usuario = ?";
         $stmt = Conexao::prepare($sql);
         $stmt->execute(array($this->idUsuario));
         if($stmt->rowCount() > 0)
